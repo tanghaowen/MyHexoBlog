@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="A simple tutorial for Git  1. Base Information Configuration1Git config">
+<meta name="keywords" content="TangHaowen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git tutorial">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/Git-tutorial/index.html">
+<meta property="og:site_name" content="Thinking of programming">
+<meta property="og:description" content="A simple tutorial for Git  1. Base Information Configuration1Git config">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/02-git-basics/images/lifecycle.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/advance-master.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/basic-branching-4.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-3.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-4.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-1.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-2.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/commit-and-tree.png">
+<meta property="og:image" content="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/commits-and-parents.png">
+<meta property="og:updated_time" content="2019-04-09T11:02:18.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git tutorial">
+<meta name="twitter:description" content="A simple tutorial for Git  1. Base Information Configuration1Git config">
+<meta name="twitter:image" content="https://bingohuang.gitbooks.io/progit2/content/02-git-basics/images/lifecycle.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Thinking of programming" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/Git-tutorial/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Git tutorial | Thinking of programming</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+    <a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Thinking of programming</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Blog of Tang Haowen</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Git-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tang Haowen">
+      <meta itemprop="description" content="To study,to enjoy. こちらのブロックは英語または日本語で書いています。">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinking of programming">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git tutorial
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-09 19:47:48 / Modified: 20:02:18" itemprop="dateCreated datePublished" datetime="2019-04-09T19:47:48+09:00">2019-04-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>A simple tutorial for Git</p>
+</blockquote>
+<h1 id="1-Base-Information-Configuration"><a href="#1-Base-Information-Configuration" class="headerlink" title="1. Base Information Configuration"></a>1. Base Information Configuration</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git config</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="1-1-Username-Mailbox-Configuration"><a href="#1-1-Username-Mailbox-Configuration" class="headerlink" title="1.1. Username Mailbox Configuration"></a>1.1. Username Mailbox Configuration</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git config --global user.name <span class="string">'username'</span></span><br><span class="line">Git config --global user.email <span class="string">'mail@mail.com'</span></span><br></pre></td></tr></table></figure>
+<p>Without <code>--global</code>, configuration information for the current project</p>
+<h2 id="1-2-View-information"><a href="#1-2-View-information" class="headerlink" title="1.2. View information"></a>1.2. View information</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git config --list</span><br></pre></td></tr></table></figure>
+<p>List all configurations</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git config user.name</span><br></pre></td></tr></table></figure>
+<p>Display the specified configuration</p>
+<h2 id="1-3-Creating-an-alias-for-the-command"><a href="#1-3-Creating-an-alias-for-the-command" class="headerlink" title="1.3. Creating an alias for the command"></a>1.3. Creating an alias for the command</h2><p>The git command is very long, it is annoying to complete the input every time, but create an alias for the command.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git config --global alias.co checkout</span><br></pre></td></tr></table></figure></p>
+<p>The above created an alias <code>git co</code> for <code>git checkout</code>.</p>
+<h1 id="2-Get-or-create-a-repository"><a href="#2-Get-or-create-a-repository" class="headerlink" title="2. Get or create a repository"></a>2. Get or create a repository</h1><h2 id="2-1-Creating-a-repository-locally"><a href="#2-1-Creating-a-repository-locally" class="headerlink" title="2.1. Creating a repository locally"></a>2.1. Creating a repository locally</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git init</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-Remote-clone-repository"><a href="#2-2-Remote-clone-repository" class="headerlink" title="2.2. Remote clone repository"></a>2.2. Remote clone repository</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git clone xxxxxx</span><br><span class="line">Git clone xxxxxx alernative_name</span><br></pre></td></tr></table></figure>
+<p>The latter can specify the folder name</p>
+<h1 id="3-Submit-an-update"><a href="#3-Submit-an-update" class="headerlink" title="3. Submit an update"></a>3. Submit an update</h1><h2 id="3-1-git-file-status"><a href="#3-1-git-file-status" class="headerlink" title="3.1. git file status"></a>3.1. git file status</h2><p><img src="https://bingohuang.gitbooks.io/progit2/content/02-git-basics/images/lifecycle.png" alt="img"></p>
+<ul>
+<li>not tracked</li>
+<li>not modified</li>
+<li>The file that has not been temporarily saved after modification has been modified, and the file will not be saved after the temporary file is submitted.</li>
+<li>The file that has been temporarily saved after the modification has been temporarily saved, and the file will not be saved until it is submitted.</li>
+</ul>
+<h3 id="3-1-1-Viewing-the-status-of-the-current-project-file"><a href="#3-1-1-Viewing-the-status-of-the-current-project-file" class="headerlink" title="3.1.1. Viewing the status of the current project file"></a>3.1.1. Viewing the status of the current project file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with <span class="string">'origin/master'</span>.</span><br><span class="line"></span><br><span class="line">Nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>If there are no changes, it will be displayed like this</p>
+<p>The information output by <code>git status</code> is very detailed, and <code>git status -s</code> can output more simple and easy-to-read information.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">M README.md</span><br><span class="line">A test.md</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-2-Tracking-new-files-git-add"><a href="#3-2-Tracking-new-files-git-add" class="headerlink" title="3.2. Tracking new files git add"></a>3.2. Tracking new files <code>git add</code></h2><p>If you create a new file in the project directory, such as <code>test.md</code>, run <code>git status</code> again.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with <span class="string">'origin/master'</span>.</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        Test.md</span><br><span class="line"></span><br><span class="line">Nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
+<p>The newly added <code>test.md</code> is displayed as untracked (<code>Untracked</code>). This will not save the file even if you submit git.</p>
+<p>It’s easy to track files:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git add test.md</span><br></pre></td></tr></table></figure></p>
+<p>The file status will then change to tracked. Submit again will save<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with <span class="string">'origin/master'</span>.</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        New file: test.md</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-3-Staging-the-modified-file-git-add"><a href="#3-3-Staging-the-modified-file-git-add" class="headerlink" title="3.3. Staging the modified file git add"></a>3.3. Staging the modified file <code>git add</code></h2><p>After the file is modified, it will not be saved if it is not temporarily stored. So you need to temporarily save the file to the staging area:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git add modified_filename</span><br></pre></td></tr></table></figure></p>
+<p><code>git add</code> is a versatile command that can be used for tracking and for temporary storage.</p>
+<p><strong><em> It is more appropriate to interpret this command as “adding content to the next commit” instead of “adding a file to the project.” </em></strong></p>
+<h2 id="3-4-Ignore-the-file-gitignore"><a href="#3-4-Ignore-the-file-gitignore" class="headerlink" title="3.4. Ignore the file .gitignore"></a>3.4. Ignore the file <code>.gitignore</code></h2><p>Some files don’t need to be added to version control, such as programming intermediate files or caches, so you need to ignore them.</p>
+<p>Although these files are not directly loaded with the <code>git add</code> track, they will not be added to the version control system, but the untracked files will be extremely lengthy. You can create a new file called <code>.gitignore</code> to ignore them.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*.bin</span><br><span class="line">*.[oa]</span><br></pre></td></tr></table></figure></p>
+<p>All files ending with <code>.bin</code>, and files of <code>.o</code> and <code>.a</code> are ignored here.</p>
+<p>The syntax for .gitignore is as follows:</p>
+<ul>
+<li><code>#</code> opening or empty behavior comment</li>
+<li><code>/</code> ends with the specified directory</li>
+<li><code>/</code> starts with no recursion</li>
+<li><code>!</code> starts with inversion and does not ignore</li>
+<li>Support for glob (a simplified regular expression used by the shell)<ul>
+<li><code>*</code> matches 0 or more arbitrary characters</li>
+<li><code>?</code> matches an arbitrary character</li>
+<li><code>[]</code> matches internal characters once, such as <code>[ab]</code> matches a or b</li>
+<li><code>[az]</code> <code>[0-9]</code> matches any character of az once, and so on</li>
+<li><code>**</code> matches any intermediate directory, such as <code>a/**/z</code> matches <code>a/z</code> <code>a/ff/gg/z</code> …</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5-Submit-an-update-to-git-commie"><a href="#3-5-Submit-an-update-to-git-commie" class="headerlink" title="3.5. Submit an update to git commie"></a>3.5. Submit an update to <code>git commie</code></h2><p>If all changes have been temporarily saved, then you can submit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git commit</span><br></pre></td></tr></table></figure></p>
+<p>After running, you will be asked to enter an update comment. If you feel too much trouble, you can choose to use<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git commit -m &apos;Bug Fix&apos;</span><br></pre></td></tr></table></figure></p>
+<p>To enter information and submit it once</p>
+<p>After submitting, the information submitted will be displayed, including the branch, the share-1 value submitted this time, etc.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git commit</span><br><span class="line"></span><br><span class="line">Hint: Waiting <span class="keyword">for</span> your editor to close the file...</span><br><span class="line">[master 41e970250] <span class="built_in">test</span> modify</span><br><span class="line"> 2 files changed, 1 insertion(+)</span><br><span class="line"> Create mode 100644 test.md</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>Remember, when you submit, you are taking a snapshot of the staging area. Anything that has not been temporarily saved remains in the modified state and can be included in version management on the next submission. Each time you run a commit operation, you take a snapshot of your project and you can return to this state later or compare it. </em></strong></p>
+<h2 id="3-6-Temporary-deposit-submission-in-one-go"><a href="#3-6-Temporary-deposit-submission-in-one-go" class="headerlink" title="3.6. Temporary deposit submission in one go"></a>3.6. Temporary deposit submission in one go</h2><p>Every commit must be <code>git add</code> and then <code>git commit</code> is too much trouble. You can use one command to achieve the same effect:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git commi -a</span><br></pre></td></tr></table></figure></p>
+<p>This command will automatically add all files that have been tracked** to the staging area.</p>
+<h2 id="3-7-Removing-files-from-the-project"><a href="#3-7-Removing-files-from-the-project" class="headerlink" title="3.7. Removing files from the project"></a>3.7. Removing files from the project</h2><p>If you want to remove a file from your project, you need to do two things:</p>
+<ol>
+<li>Remove files</li>
+<li>Remove the file from the project’s tracked file</li>
+</ol>
+<p>be usable<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git rm</span><br></pre></td></tr></table></figure></p>
+<p>A one-time agreement.<br>If you do not use this command to delete the file directly, the changes to the deletion need to be submitted using <code>git add</code> or <code>git rm</code>.</p>
+<h3 id="3-7-1-Can’t-remove"><a href="#3-7-1-Can’t-remove" class="headerlink" title="3.7.1. Can’t remove?"></a>3.7.1. Can’t remove?</h3><p>If the file is modified, but there is no commit submission, the file cannot be deleted. (If you do not submit, the content you modified cannot be saved, preventing the deletion from being completely lost after deletion.)<br>At this point, if you must delete the use of <code>-f</code>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git rm -f</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-8-Moving-files"><a href="#3-8-Moving-files" class="headerlink" title="3.8. Moving files"></a>3.8. Moving files</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git mv oldfile newfile</span><br></pre></td></tr></table></figure>
+<p>In fact, running git mv is equivalent to running the following three commands:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure></p>
+<p>Even if you perform the above three commands separately, Git will realize that this is a change of name.</p>
+<h1 id="4-Submit-history-view"><a href="#4-Submit-history-view" class="headerlink" title="4. Submit history view"></a>4. Submit history view</h1><h2 id="4-1-View-the-specified-submission-via-git-show"><a href="#4-1-View-the-specified-submission-via-git-show" class="headerlink" title="4.1. View the specified submission: via git show"></a>4.1. View the specified submission: via <code>git show</code></h2><p>If you want to see a specified submission pass<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git show submit share-1 value</span><br></pre></td></tr></table></figure></p>
+<p>If the commit is associated with a tag, you can find the commit via the tag.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git show v1.0</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-2-git-log"><a href="#4-2-git-log" class="headerlink" title="4.2. git log"></a>4.2. <code>git log</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>All submissions will be displayed in order from new to old.<br>[Common options for git log] (<a href="https://bingohuang.gitbooks.io/progit2/content/02-git-basics/sections/viewing-history.html#log_options" target="_blank" rel="noopener">https://bingohuang.gitbooks.io/progit2/content/02-git-basics/sections/viewing-history.html#log_options</a>)</p>
+<h2 id="4-3-git-log-p-2"><a href="#4-3-git-log-p-2" class="headerlink" title="4.3. git log -p -2"></a>4.3. <code>git log -p -2</code></h2><p>Show submitted content differences</p>
+<p>-2 shows the last two commits, -1 shows the last time, and so on</p>
+<p>You can also restrict the display of the last two weeks, one month, etc., refer to [limit git log output options] (<a href="https://bingohuang.gitbooks.io/progit2/content/02-git-basics/sections/viewing-history.html" target="_blank" rel="noopener">https://bingohuang.gitbooks.io/progit2/content/02-git-basics/sections/viewing-history.html</a> #limit_options)</p>
+<h2 id="4-4-git-log-stat"><a href="#4-4-git-log-stat" class="headerlink" title="4.4. git log --stat"></a>4.4. <code>git log --stat</code></h2><p>If you just want to see the summary statistics submitted, use this</p>
+<h2 id="4-5-git-log-pretty-xxx"><a href="#4-5-git-log-pretty-xxx" class="headerlink" title="4.5. git log --pretty=xxx"></a>4.5. <code>git log --pretty=xxx</code></h2><p>Display the submission history in other formats.</p>
+<ul>
+<li>–pretty=oneline put each commit in one line</li>
+<li>short full fuller </li>
+</ul>
+<p>Custom format<br>Can also customize the format<br>Such as<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Git <span class="built_in">log</span> --pretty=format:<span class="string">"%h - %an, %ar : %s"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Ca82a6d - Scott Chacon, 11 years ago : changed the verison number</span><br><span class="line">085bb3b - Scott Chacon, 11 years ago : removed unnecessary <span class="built_in">test</span> code</span><br><span class="line">A11bef0 - Scott Chacon, 11 years ago : first commit</span><br></pre></td></tr></table></figure></p>
+<p>Specific meanings, refer to:<br>Https://bingohuang.gitbooks.io/progit2/content/02-git-basics/sections/viewing-history.html#pretty_format</p>
+<h2 id="4-6-graph"><a href="#4-6-graph" class="headerlink" title="4.6. --graph"></a>4.6. <code>--graph</code></h2><p>Combine <code>--graph</code> to display commit history in ascii graphical form</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">* commit ca82a6dff817ec66f44342007202690a93763949 (HEAD -&gt; master, origin/master, origin/HEAD)</span><br><span class="line">| Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">| Date: Mon Mar 17 21:52:11 2008 -0700</span><br><span class="line">|</span><br><span class="line">| changed the verison number</span><br><span class="line">|</span><br><span class="line">* commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7</span><br><span class="line">| Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">| Date: Sat Mar 15 16:40:33 2008 -0700</span><br><span class="line">|</span><br><span class="line">| removed unnecessary <span class="built_in">test</span> code</span><br><span class="line">|</span><br><span class="line">* commit a11bef06a3f659402fe7563abf99ad00de2209e6</span><br><span class="line">  Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">  Date: Sat Mar 15 10:31:28 2008 -0700</span><br><span class="line"></span><br><span class="line">      First commit</span><br></pre></td></tr></table></figure>
+<h1 id="5-Label-Tag"><a href="#5-Label-Tag" class="headerlink" title="5. Label Tag"></a>5. Label Tag</h1><p>A label that can be submitted to Commit<strong> for a </strong>.</p>
+<p>You can use this tag to mark a submission with a number of tags, such as: <code>v1.0</code>, <code>V2.0</code></p>
+<h2 id="5-1-Listing-labels"><a href="#5-1-Listing-labels" class="headerlink" title="5.1. Listing labels"></a>5.1. Listing labels</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git tag</span><br><span class="line">Git tag -l</span><br></pre></td></tr></table></figure>
+<p>Can list all the labels</p>
+<p>Too many labels can use wildcard filter labels<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git tag -l &quot;v2.*&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-2-View-the-Commit-associated-with-the-label"><a href="#5-2-View-the-Commit-associated-with-the-label" class="headerlink" title="5.2. View the Commit associated with the label"></a>5.2. View the Commit associated with the label</h2><p>The .com show tagname can be used to view the commit associated with the tag.</p>
+<h2 id="5-3-Creating-tags-for-current-submissions"><a href="#5-3-Creating-tags-for-current-submissions" class="headerlink" title="5.3. Creating tags for current submissions"></a>5.3. Creating tags for current submissions</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git tag -a V1.0 -m <span class="string">"tag message"</span> <span class="comment">#This is creating a complex tag</span></span><br><span class="line">Git tag v1.2 <span class="comment">#This creates a simple tag with only one text</span></span><br></pre></td></tr></table></figure>
+<p>Created a V1.0 tag for the current commit</p>
+<h2 id="5-4-Creating-tags-for-past-submissions"><a href="#5-4-Creating-tags-for-past-submissions" class="headerlink" title="5.4. Creating tags for past submissions"></a>5.4. Creating tags for past submissions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git tag -a V2.2 COMMIT share-1 value</span><br></pre></td></tr></table></figure>
+<h2 id="5-5-Push-tab"><a href="#5-5-Push-tab" class="headerlink" title="5.5. Push tab"></a>5.5. Push tab</h2><p>Labels are not pushed to the server by default and need to be manually pushed.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git push origin v1.5 <span class="comment"># push the specified label</span></span><br><span class="line">Git push origin --tags <span class="comment"># push all tags</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="6-Branch"><a href="#6-Branch" class="headerlink" title="6. Branch"></a>6. Branch</h1><p><strong>What is a branch? </strong><br>The branch is actually the <strong> pointer</strong>, which is essentially just a variable <strong> pointer</strong> pointing to the submitted object. Not a specific line concept.</p>
+<p><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/advance-master.png" alt="img"></p>
+<p>As shown above, there are three commit objects, each of which has an arrow pointing to the parent commit object. Because each commit has its own parent commit, you only need to select the latest commit object to follow the commit object back to the entire commit process.</p>
+<p>For example, if we specify the <code>c2b9e</code> commit object, we can know that its parent commit is <code>f30ab</code>, the parent submit is <code>34ac2</code>, and so on, and we have figured out the direction of the line.</p>
+<p>The same is true for <code>87ab2</code>.</p>
+<p>So, the branch is actually a pointer to the latest commit object for these lines. The above picture <code>master</code> points to the line <code>c2b9e</code>, and the <code>testing</code> branch points to the line of <code>87ab2</code>.</p>
+<p>The <code>HEAD</code> pointer points to the current location, which can point to a branch object, such as <code>testing</code>master<code>, or to a commit object, such as:</code>f30ab<code></code>c2b9e`</p>
+<h3 id="6-0-1-View-the-Commit-object-pointed-to-by-each-branch"><a href="#6-0-1-View-the-Commit-object-pointed-to-by-each-branch" class="headerlink" title="6.0.1. View the Commit object pointed to by each branch"></a>6.0.1. View the Commit object pointed to by each branch</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git <span class="built_in">log</span> --oneline --decorate</span><br></pre></td></tr></table></figure>
+<p>Use <code>--decorate</code></p>
+<h2 id="6-1-Creating-a-delete-branch"><a href="#6-1-Creating-a-delete-branch" class="headerlink" title="6.1. Creating a delete branch"></a>6.1. Creating a delete branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Git branch testing <span class="comment"># This creates a branch pointer to the commit you are currently in.</span></span><br><span class="line">Git branch testing &lt;the <span class="built_in">hash</span> value of the commit pointed to by the branch&gt; <span class="comment"># This creates a branch pointing to the specified hash value commit</span></span><br><span class="line">Git branch testing &lt;another branch&gt; <span class="comment"># This creates a testing branch that points to the same commit as another branch</span></span><br><span class="line">A branch named `testing` was created above at the current location.</span><br><span class="line"></span><br><span class="line">Delete branch</span><br></pre></td></tr></table></figure>
+<p>Git branch -d testing<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">If it is currently on the branch you want to delete, the deletion will fail.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 7.2. Switching branches</span><br></pre></td></tr></table></figure></p>
+<p>Git checkout testing<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Switch the current branch to `testing` so that the `HEAD` pointer points to this branch.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 7.3. Creating and switching branches</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">Git checkout -b BRANCH_NAME</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-4-Commit-commit-on-branch"><a href="#7-4-Commit-commit-on-branch" class="headerlink" title="7.4. Commit commit on branch"></a>7.4. Commit commit on branch</h2><p>The commit on the branch creates a new commit and then moves the branch pointer to the new commit<br><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/basic-branching-4.png" alt="img"></p>
+<p>Originally there are three branches on <code>c2</code>, <code>master`</code>hotfix<code></code>iss53<code>, when commit on</code>hotfix<code>,</code>c4<code>appears, and the</code>hotfix<code>branch pointer is moved to the top,</code>iss53` Reason.</p>
+<h2 id="7-5-Merge-branch-merge"><a href="#7-5-Merge-branch-merge" class="headerlink" title="7.5. Merge branch merge"></a>7.5. Merge branch <code>merge</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git merge target branch name</span><br></pre></td></tr></table></figure>
+<p>Merge the target branch to the current branch.</p>
+<h2 id="7-6-Branch-merge-when-encountering-conflicts"><a href="#7-6-Branch-merge-when-encountering-conflicts" class="headerlink" title="7.6. Branch merge when encountering conflicts"></a>7.6. Branch merge when encountering conflicts</h2><p>Sometimes the merge operation will not be so smooth. If you make different changes to the same part of the same file in two different branches, Git can’t clean them cleanly.</p>
+<p>A new merge commit is not automatically created at this time. Git will pause and wait for you to resolve the conflict caused by the merge.</p>
+<p>These files waiting for conflict can be viewed with <code>git status</code>.</p>
+<p>Then open those files, any files that have to be resolved due to the merge conflict will be identified in the unmerged state. Such as<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html</span><br><span class="line">&lt;div id=&quot;footer&quot;&gt;contact : email.support@github.com&lt;/div&gt;</span><br><span class="line">=======</span><br><span class="line">&lt;div id=&quot;footer&quot;&gt;</span><br><span class="line"> Please contact us at support@github.com</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html</span><br></pre></td></tr></table></figure></p>
+<p>This represents the version indicated by HEAD (that is, where your master branch is located, because you have checked out the branch when you ran the merge command) in the upper half of the section (======= The upper half), while the version indicated by the iss53 branch is in the lower half of =======. In order to resolve conflicts, you must choose to use one of the two parts split by =======, or you can merge them yourself.</p>
+<p>After resolving the conflict, mark it as resolved with <code>git add</code>, then <code>git commit</code></p>
+<h3 id="Fast-Forward-mode"><a href="#Fast-Forward-mode" class="headerlink" title="Fast Forward mode"></a><code>Fast Forward</code> mode</h3><p>If the public <code>commit</code> of the target branch and the current branch is the latest <code>commit</code> of the current branch when merging, git will enable the <code>Fast Forward</code> mode, which directly moves the branch pointer to the latest commit of the target branch.</p>
+<p>This will be quick and easy.</p>
+<p>But after this, the current branch and the target branch become the same line.</p>
+<h3 id="Disable-Fast-Forward"><a href="#Disable-Fast-Forward" class="headerlink" title="Disable Fast Forward"></a>Disable <code>Fast Forward</code></h3><p>When merging, bring <code>--no-ff</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git merge --no-ff &lt;target branch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>When the <code>Fask Forward</code> mode is disabled, the merge branch will have a new commit.</p>
+<h3 id="7-6-1-Imaged-merge-tool"><a href="#7-6-1-Imaged-merge-tool" class="headerlink" title="7.6.1. Imaged merge tool"></a>7.6.1. Imaged merge tool</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git mergetool</span><br></pre></td></tr></table></figure>
+<h2 id="7-7-Rebaserebase"><a href="#7-7-Rebaserebase" class="headerlink" title="7.7. Rebaserebase"></a>7.7. Rebase<code>rebase</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git rebase master # rebase the current branch to the master</span><br><span class="line">Git rebase master topic # rebase the topic branch to the master</span><br></pre></td></tr></table></figure>
+<p>Merge the current branch rebase onto the <code>master</code> branch.</p>
+<p><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-3.png" alt="img"><br>Use rebase as shown in the <code>server</code> branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git rebase master</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-4.png" alt="img"><br>As you can see, the new <code>c3&#39;</code>, <code>c4&#39;</code>, <code>c10&#39;</code> commits appear on the <code>master</code> branch. This means that changes to the file are submitted in accordance with c3 c4 c10, changes are made to the c9’ commit, and the <code>server</code> branch pointer is moved to the last c10’.</p>
+<h3 id="7-7-1-–onto-Usage"><a href="#7-7-1-–onto-Usage" class="headerlink" title="7.7.1. –onto Usage"></a>7.7.1. –onto Usage</h3><p><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-1.png" alt="img"><br>If you use the command for this project:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git rebase --onto master server client</span><br></pre></td></tr></table></figure></p>
+<p>Means: “Remove the client branch, find the modifications after the common ancestor of the client branch and the server branch, and then repeat them on the master branch.”</p>
+<p>final effect:<br><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/interesting-rebase-2.png" alt="img"></p>
+<h1 id="8-Undo-operation"><a href="#8-Undo-operation" class="headerlink" title="8. Undo operation"></a>8. Undo operation</h1><h2 id="8-1-git-commit-amend-Modify-the-last-commit"><a href="#8-1-git-commit-amend-Modify-the-last-commit" class="headerlink" title="8.1. git commit --amend Modify the last commit"></a>8.1. <code>git commit --amend</code> Modify the last commit</h2><p>After submitting, I found that I missed a file and did not submit it. What should I do?<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
+<p><code>--amend</code> means to modify the last commit and merge the current changes into the last commit, which is equivalent to patching the last commit.</p>
+<h2 id="8-2-Deleting-files-from-the-staging-area"><a href="#8-2-Deleting-files-from-the-staging-area" class="headerlink" title="8.2. Deleting files from the staging area"></a>8.2. Deleting files from the staging area</h2><p>Modified the file, use <code>git add</code> to add the changes to the staging area, how to cancel the changes from the staging area?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git reset HEAD FILENAME</span><br></pre></td></tr></table></figure></p>
+<p>This command will delete the development file from the temporary storage area.</p>
+<h2 id="8-3-Undoing-changes"><a href="#8-3-Undoing-changes" class="headerlink" title="8.3. Undoing changes"></a>8.3. Undoing changes</h2><p>I modified the file, but I regret it. I want to restore the file to what it was before.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git checkout -- FILENAME</span><br></pre></td></tr></table></figure></p>
+<p>This command will ignore your modifications to the specified file and overwrite it from the last commit.<br><strong>This order is very dangerous</strong></p>
+<h2 id="8-4-Recover-deleted-branches"><a href="#8-4-Recover-deleted-branches" class="headerlink" title="8.4. Recover deleted branches"></a>8.4. Recover deleted branches</h2><p>If you know the share-1 value of the commit that the branch originally points to, you only need to create a branch with the same name for the commit again.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git branch &lt;branch name&gt; &lt;the hash value of the commit pointed to by the branch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>If you don’t know share-1, use <code>reflog</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git reflog</span><br></pre></td></tr></table></figure></p>
+<p>#远程仓库</p>
+<p>Remote repository is a non-local and <strong> current repository does not matter </strong> another repository ** (in fact, the remote repository can also be local, as long as the repository is not related to the current repository is considered a remote repository)</p>
+<p>Think of the current project repository and remote repository as two independent, unrelated repositorys will be better understood</p>
+<p>There are many commits and branches in the local repository, and the remote repository can have no data. Unless you upload the specified data to a remote repository. The reverse is also the same.</p>
+<p>If you want to associate a remote repository with a local repository, you need to use <code>git remote add</code></p>
+<h2 id="Adding-a-remote-repository-to-a-project"><a href="#Adding-a-remote-repository-to-a-project" class="headerlink" title="Adding a remote repository to a project"></a>Adding a remote repository to a project</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git remote add origin git@github.com:xxx/xxxx.git</span><br></pre></td></tr></table></figure>
+<h2 id="Reference-to-remote-repository"><a href="#Reference-to-remote-repository" class="headerlink" title="Reference to remote repository"></a>Reference to remote repository</h2><p>A remote repository has been added above with the address <a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:xxx/xxxx.git`.<br>To push data to this remote repository or to get the code in the repository is only needed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git push git@github.com:xxx/xxxx.git</span><br></pre></td></tr></table></figure></p>
+<p>This is to push the code to the specified remote repository, but it is too much trouble to enter the complete address each time, so we can give this address a unique name to remember, the place where the alias is specified is the one above.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git remote add origin git@github.com:xxx/xxxx.git</span><br></pre></td></tr></table></figure></p>
+<p><code>origin</code> is an alias for remote repositories. Origin has no special meaning and can take any name. The origin is taken here simply because everyone is using this name, and it is also the default name of git, everyone is used to it. I am too lazy to change.</p>
+<p>After defining the alias, referencing the remote repository and branch becomes<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Origin</span><br><span class="line">Origin/branch</span><br></pre></td></tr></table></figure></p>
+<h2 id="fetch-Get-the-latest-information-on-remote-repositories"><a href="#fetch-Get-the-latest-information-on-remote-repositories" class="headerlink" title="fetch Get the latest information on remote repositories"></a><code>fetch</code> Get the latest information on remote repositories</h2><p>After the code is cloned from the remote repository, if someone updates the remote repository, the local remote repository commit code is old, you can get the latest code through <code>fetch</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git fetch origin</span><br></pre></td></tr></table></figure></p>
+<p>At this time we just grabbed the latest code data from the remote and did not apply the latest code to the working directory. To apply the code you need to use <code>merge</code> to merge the remote repository code** into the local.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git merge origin/master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Why not use <code>git checkout origin/master</code></p>
+<p>If we use <code>git checkout origin/master</code>, since <code>origin/master</code> is a remote branch, it will not change. Because the remote branch is only pushed through <code>git push</code>. So the result is that if <code>checkout</code> is on <code>origin/master</code> and the update is submitted above, then this update will not be subordinate to any local branch, which will cause the commit to be lost after cutting to another place.</p>
+</blockquote>
+<p>Or create a local branch on the <code>origin/master</code> branch:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Git branch myb origin/master</span><br><span class="line">Git checkout myb</span><br><span class="line"></span><br><span class="line">Or</span><br><span class="line"></span><br><span class="line">Git -b myb origin/master</span><br></pre></td></tr></table></figure></p>
+<p>This usage refers to the syntax created by the previous branch. This creates a local branch <code>myb</code> pointing to <code>origin/master</code> with the commit object.</p>
+<h2 id="Tracking-branches-and-pull"><a href="#Tracking-branches-and-pull" class="headerlink" title="Tracking branches and pull"></a>Tracking branches and <code>pull</code></h2><p>Every time we update the code remotely, we have to fetch it down and then merge it with merge, which is very troublesome.</p>
+<p>There is an easy way to do this all at once, that is, to associate a local branch with a remote branch. Getting data from the local branch is automatically merged.</p>
+<h3 id="Tracking-branch"><a href="#Tracking-branch" class="headerlink" title="Tracking branch"></a>Tracking branch</h3><p>The local branch and remote branch association methods are the above<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git branch myb origin/master</span><br><span class="line">Git checkout myb</span><br></pre></td></tr></table></figure></p>
+<p>This local <code>myb</code> branch is associated with the remote <code>origin/master</code> branch.</p>
+<p>Or can be simplified to<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git checkout --track origin/master</span><br></pre></td></tr></table></figure></p>
+<p>The local <code>master</code> branch is automatically associated with the <code>origin/master</code> branch.<br>Change the remote branch associated with the local branch, using:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git branch -u origin/dev</span><br><span class="line">Git branch --set-upstream-to origin/dev</span><br></pre></td></tr></table></figure></p>
+<p>When the trace branch is set, it can be referenced by the <code>@{upstream}</code> or <code>@{u}</code> shortcut. </p>
+<h4 id="List-tracking-information-for-all-branches"><a href="#List-tracking-information-for-all-branches" class="headerlink" title="List tracking information for all branches"></a>List tracking information for all branches</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git branch -vv</span><br></pre></td></tr></table></figure>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a><code>git pull</code></h3><p><code>git pull</code> = <code>git fetch tracked branch</code> + <code>git merge tracked branch</code></p>
+<h2 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h2><p>We don’t want to push all the branches and commits in the local repository to the remote repository when pushing.</p>
+<p>So when you push, we have to specify what to push to the remote repository.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Git push remote repository <span class="built_in">local</span> branch name: remote branch name</span><br><span class="line"></span><br><span class="line">Git push origin master</span><br></pre></td></tr></table></figure>
+<p>This code function is to push the local <code>mster</code> branch to the <code>master</code> branch of the <code>origin</code> remote repository.</p>
+<p>If you want to customize the branch name of the remote repository<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git push origin master:lululu</span><br></pre></td></tr></table></figure></p>
+<p>This is to push the local <code>mster</code> branch to the <code>lululu</code> branch of the <code>origin</code> remote repository.</p>
+<h2 id="Deleting-branches-in-a-remote-repository"><a href="#Deleting-branches-in-a-remote-repository" class="headerlink" title="Deleting branches in a remote repository"></a>Deleting branches in a remote repository</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Git push origin --delete serverfix</span><br></pre></td></tr></table></figure>
+<p>Removed branch <code>serverfix</code> on the server</p>
+<h2 id="Push-tab"><a href="#Push-tab" class="headerlink" title="Push tab"></a>Push tab</h2><p>By default, the <code>git push</code> command does not pass tags to the remote repository server. After creating the tag you must explicitly push the tag to the shared server.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Git push origin v1.5</span><br><span class="line"></span><br><span class="line">Git push origin --tags <span class="comment"># This will transfer all the tags that are not on the remote repository server.</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Github-use"><a href="#Github-use" class="headerlink" title="Github use"></a>Github use</h2><h3 id="Create-ssh-key"><a href="#Create-ssh-key" class="headerlink" title="Create ssh key"></a>Create ssh key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span><br></pre></td></tr></table></figure>
+<p>After returning all the way, two files id_rsa and id_rsa.pub will be generated in the personal directory.</p>
+<h3 id="Github-Add-ssh-public-key"><a href="#Github-Add-ssh-public-key" class="headerlink" title="Github Add ssh public key"></a>Github Add ssh public key</h3><p>In the github settings, paste the id_rsa.pub public key into it.</p>
+<h3 id="Testing-ssh-links"><a href="#Testing-ssh-links" class="headerlink" title="Testing ssh links"></a>Testing ssh links</h3><p>Whenever git’s ssh link is used, the private key <code>id_rsa</code> private key in the <code>.ssh</code> directory is automatically called.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<h1 id="9-Appendix"><a href="#9-Appendix" class="headerlink" title="9. Appendix"></a>9. Appendix</h1><h2 id="9-1-The-underlying-object"><a href="#9-1-The-underlying-object" class="headerlink" title="9.1. The underlying object"></a>9.1. The underlying object</h2><p>A Commit corresponds to a commit submission object. There are several small objects under this submission object.</p>
+<p><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/commit-and-tree.png" alt="img"><br>As shown, a <code>commit</code> object contains a <code>tree</code> object to record the directory structure of the following file snapshot.</p>
+<p>A <code>tree</code> object records a bunch of <code>blob</code> objects (the <code>blob</code> object is a file snapshot).</p>
+<p>The above image is the first commit when creating the project, there is no parent <code>commit</code> object.</p>
+<p>The commit after the first commit has a parent object, as shown in the figure:<br><img src="https://bingohuang.gitbooks.io/progit2/content/03-git-branching/images/commits-and-parents.png" alt="img"></p>
+<h1 id="10-Others"><a href="#10-Others" class="headerlink" title="10. Others"></a>10. Others</h1><h2 id="git-ignore-specific-files"><a href="#git-ignore-specific-files" class="headerlink" title="git ignore specific files"></a>git ignore specific files</h2><p>Https://hiberabyss.github.io/2018/03/03/git-ignore-specific-file/</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/09/Go-language-learning-Note/" rel="next" title="Go language learning note for C programer">
+                <i class="fa fa-chevron-left"></i> Go language learning note for C programer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Tang Haowen">
+              </a>
+            
+              <p class="site-author-name" itemprop="name">Tang Haowen</p>
+              <div class="site-description motion-element" itemprop="description">To study,to enjoy. こちらのブロックは英語または日本語で書いています。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/tanghaowen100" title="GitHub &rarr; https://github.com/tanghaowen100" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:tanghaowen100@gmail.com" title="E-Mail &rarr; mailto:tanghaowen100@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.wantedly.com/secret_profiles/uZs-K-JhZgjzNmUrVTu8tg3Nf5SvQb3r" title="wantly &rarr; https://www.wantedly.com/secret_profiles/uZs-K-JhZgjzNmUrVTu8tg3Nf5SvQb3r" rel="noopener" target="_blank"><i class="fa fa-fw fa-wantly"></i>wantly</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Base-Information-Configuration"><span class="nav-number">1.</span> <span class="nav-text">1. Base Information Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Username-Mailbox-Configuration"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. Username Mailbox Configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-View-information"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. View information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Creating-an-alias-for-the-command"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. Creating an alias for the command</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Get-or-create-a-repository"><span class="nav-number">2.</span> <span class="nav-text">2. Get or create a repository</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Creating-a-repository-locally"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. Creating a repository locally</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Remote-clone-repository"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. Remote clone repository</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Submit-an-update"><span class="nav-number">3.</span> <span class="nav-text">3. Submit an update</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-git-file-status"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. git file status</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-Viewing-the-status-of-the-current-project-file"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. Viewing the status of the current project file</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Tracking-new-files-git-add"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. Tracking new files git add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Staging-the-modified-file-git-add"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. Staging the modified file git add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Ignore-the-file-gitignore"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. Ignore the file .gitignore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-Submit-an-update-to-git-commie"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. Submit an update to git commie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-Temporary-deposit-submission-in-one-go"><span class="nav-number">3.6.</span> <span class="nav-text">3.6. Temporary deposit submission in one go</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-Removing-files-from-the-project"><span class="nav-number">3.7.</span> <span class="nav-text">3.7. Removing files from the project</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-1-Can’t-remove"><span class="nav-number">3.7.1.</span> <span class="nav-text">3.7.1. Can’t remove?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-Moving-files"><span class="nav-number">3.8.</span> <span class="nav-text">3.8. Moving files</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Submit-history-view"><span class="nav-number">4.</span> <span class="nav-text">4. Submit history view</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-View-the-specified-submission-via-git-show"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. View the specified submission: via git show</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-git-log"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. git log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-git-log-p-2"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. git log -p -2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-git-log-stat"><span class="nav-number">4.4.</span> <span class="nav-text">4.4. git log --stat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-git-log-pretty-xxx"><span class="nav-number">4.5.</span> <span class="nav-text">4.5. git log --pretty=xxx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-graph"><span class="nav-number">4.6.</span> <span class="nav-text">4.6. --graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Label-Tag"><span class="nav-number">5.</span> <span class="nav-text">5. Label Tag</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Listing-labels"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. Listing labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-View-the-Commit-associated-with-the-label"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. View the Commit associated with the label</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Creating-tags-for-current-submissions"><span class="nav-number">5.3.</span> <span class="nav-text">5.3. Creating tags for current submissions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-Creating-tags-for-past-submissions"><span class="nav-number">5.4.</span> <span class="nav-text">5.4. Creating tags for past submissions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-Push-tab"><span class="nav-number">5.5.</span> <span class="nav-text">5.5. Push tab</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Branch"><span class="nav-number">6.</span> <span class="nav-text">6. Branch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-0-1-View-the-Commit-object-pointed-to-by-each-branch"><span class="nav-number">6.0.1.</span> <span class="nav-text">6.0.1. View the Commit object pointed to by each branch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Creating-a-delete-branch"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. Creating a delete branch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-Commit-commit-on-branch"><span class="nav-number">6.2.</span> <span class="nav-text">7.4. Commit commit on branch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-Merge-branch-merge"><span class="nav-number">6.3.</span> <span class="nav-text">7.5. Merge branch merge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-6-Branch-merge-when-encountering-conflicts"><span class="nav-number">6.4.</span> <span class="nav-text">7.6. Branch merge when encountering conflicts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fast-Forward-mode"><span class="nav-number">6.4.1.</span> <span class="nav-text">Fast Forward mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disable-Fast-Forward"><span class="nav-number">6.4.2.</span> <span class="nav-text">Disable Fast Forward</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-1-Imaged-merge-tool"><span class="nav-number">6.4.3.</span> <span class="nav-text">7.6.1. Imaged merge tool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-7-Rebaserebase"><span class="nav-number">6.5.</span> <span class="nav-text">7.7. Rebaserebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-1-–onto-Usage"><span class="nav-number">6.5.1.</span> <span class="nav-text">7.7.1. –onto Usage</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Undo-operation"><span class="nav-number">7.</span> <span class="nav-text">8. Undo operation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-git-commit-amend-Modify-the-last-commit"><span class="nav-number">7.1.</span> <span class="nav-text">8.1. git commit --amend Modify the last commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Deleting-files-from-the-staging-area"><span class="nav-number">7.2.</span> <span class="nav-text">8.2. Deleting files from the staging area</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-Undoing-changes"><span class="nav-number">7.3.</span> <span class="nav-text">8.3. Undoing changes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-Recover-deleted-branches"><span class="nav-number">7.4.</span> <span class="nav-text">8.4. Recover deleted branches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-a-remote-repository-to-a-project"><span class="nav-number">7.5.</span> <span class="nav-text">Adding a remote repository to a project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-to-remote-repository"><span class="nav-number">7.6.</span> <span class="nav-text">Reference to remote repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fetch-Get-the-latest-information-on-remote-repositories"><span class="nav-number">7.7.</span> <span class="nav-text">fetch Get the latest information on remote repositories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tracking-branches-and-pull"><span class="nav-number">7.8.</span> <span class="nav-text">Tracking branches and pull</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tracking-branch"><span class="nav-number">7.8.1.</span> <span class="nav-text">Tracking branch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#List-tracking-information-for-all-branches"><span class="nav-number">7.8.1.1.</span> <span class="nav-text">List tracking information for all branches</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-pull"><span class="nav-number">7.8.2.</span> <span class="nav-text">git pull</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push"><span class="nav-number">7.9.</span> <span class="nav-text">Push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deleting-branches-in-a-remote-repository"><span class="nav-number">7.10.</span> <span class="nav-text">Deleting branches in a remote repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push-tab"><span class="nav-number">7.11.</span> <span class="nav-text">Push tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-use"><span class="nav-number">7.12.</span> <span class="nav-text">Github use</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-ssh-key"><span class="nav-number">7.12.1.</span> <span class="nav-text">Create ssh key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github-Add-ssh-public-key"><span class="nav-number">7.12.2.</span> <span class="nav-text">Github Add ssh public key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-ssh-links"><span class="nav-number">7.12.3.</span> <span class="nav-text">Testing ssh links</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Appendix"><span class="nav-number">8.</span> <span class="nav-text">9. Appendix</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-The-underlying-object"><span class="nav-number">8.1.</span> <span class="nav-text">9.1. The underlying object</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Others"><span class="nav-number">9.</span> <span class="nav-text">10. Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-ignore-specific-files"><span class="nav-number">9.1.</span> <span class="nav-text">git ignore specific files</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tang Haowen</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('Copied');
+        else $(this).text('Copy failed');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('Copy');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
