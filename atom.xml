@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Thinking of programming</title>
+  <title>Thinking About Programming</title>
   
   <subtitle>光に向かって一歩でも進もうとしている限り、希望を失うことなどは断じて無い</subtitle>
   <link href="/atom.xml" rel="self"/>
